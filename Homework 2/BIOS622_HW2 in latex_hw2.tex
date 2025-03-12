@@ -1,0 +1,61 @@
+\documentstyle[epsfig,amsmath,11pt]{article}
+%\usepackage{amssymb,psfig,epsfig}
+\bibliographystyle{plain}
+\setlength{\oddsidemargin}{0.01in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{-0.51in}
+\setlength{\textheight}{8.5in}
+
+\begin{document}
+\def\bebf{\mbox{\boldmath $\beta$}}
+\def\mubf{\mbox{\boldmath $\mu$}}
+\def\epbf{\mbox{\scriptsize\boldmath $\epsilon$}}
+\def\mus{\mbox{\scriptsize\boldmath $\mu$}}
+
+\title{BIOS 622 Homework 2}
+
+\maketitle
+
+\baselineskip=15pt
+\parskip 12pt
+
+Please answer each question precisely and completely. It is permissible to discuss each other, but all of your work must be your own.  
+
+\begin{enumerate}
+
+\item Weibull distribution has a survival function $S(t) = e^{-\lambda t ^{\gamma}}$ where $\lambda$ is the scale parameter and $\gamma$ is the shape parameter. (1) Derive $f(t)$, $h(t)$ and $H(t)$. (2) It is helpful to plot log$t$ versus log$\{-log(S(t)\}$ and you should see a straight line indeed if the data are from a Weibull distribution. Prove the slope = $\gamma$ (shape parameter) and intercept = log$\lambda$ (where $\lambda$ is scale parameter).
+
+
+\item Use R to make the same figure as on Slide 34 from the course notes (Weibull distribution with scale $\lambda = 1$ and shape $\gamma = 1.5$). You may submit your R codes and figure with separate files.
+
+
+\item A random variable $T$ has a log-normal distribution if $X = log(T)$ has a normal p.d.f:
+$$
+f(x) = \frac{1}{\sqrt{2\pi} \sigma} e ^{ - \frac{(x - \mu)^2}{2\sigma^2}}.
+$$
+(1) Prove T has the p.d.f: 
+$$
+f(t) = \frac{1}{\sqrt{2\pi} \sigma t} e ^{ - \frac{(log(t) - \mu)^2}{2\sigma^2}}.
+$$
+(2) Plot $h(t)$ over the time interval (0, 4) in R (see below). Does the hazard function $h(t)$ monotonically increase or decrease when $t$ increases?
+
+
+\begin{verbatim}
+  > time <- seq(0, 4, by=0.05)
+	> logft1 <- dlnorm(time, meanlog=0, sdlog=1, log=FALSE)
+	> logSt1 <- (1- plnorm(time, meanlog=0, sdlog=1, lower.tail=TRUE, log.p=FALSE))
+	> loght1 <- logft1/logSt1
+	> plot(time, loght1, type="l",col=1, ylab="h(t)", xlab="Time (t)") ## h(t)
+	> #plot(time, logSt1)   #### survival curve
+    \end{verbatim}
+
+\end{enumerate}
+
+
+
+\end{document}
+
+
+
+
+

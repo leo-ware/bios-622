@@ -1,0 +1,57 @@
+\documentstyle[epsfig,amsmath,11pt]{article}
+%\usepackage{amssymb,psfig,epsfig}
+\bibliographystyle{plain}
+\setlength{\oddsidemargin}{0.01in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{-0.51in}
+\setlength{\textheight}{8.5in}
+
+\begin{document}
+\def\bebf{\mbox{\boldmath $\beta$}}
+\def\mubf{\mbox{\boldmath $\mu$}}
+\def\epbf{\mbox{\scriptsize\boldmath $\epsilon$}}
+\def\mus{\mbox{\scriptsize\boldmath $\mu$}}
+
+
+\title{BIOS 622 Home Work 1}
+\vspace{0.2in}
+\author{Instructor: Sijin Wen\\ }
+\date{\today}
+\maketitle
+
+\baselineskip=18pt
+\parskip 12pt
+
+Please answer each question precisely and completely. Use clear, complete sentences when giving your answers and derivations.  It is permissible to discuss each other, but all of your work must be your own.  
+
+\begin{enumerate}
+
+\item The investigator of a clinical trial in cancer patients would like to perform a randomization, open-label study to determine whether a correlation exists between treatments (chemo+vitamin D versus chemo+placebo) and number of chemo-therapy cycles completed without treatment-limiting neurotoxicity (all patients wil have chemo-therapy). Describe what would be the event and which observations would be considered censored for such a study.
+
+
+
+\item A hazard function $h(t)$ (page 26) and cumulative hazard function $H(t)$ (page 27) are defined as
+$$
+h(t) = \lim_{\Delta t \to 0} \frac{1}{\Delta t} P[t \leq T < t +\Delta t | T > t] = \frac{f(t)}{S(t)},
+$$
+$$
+H(t) = \int_0^t h(s)ds,
+$$
+respectively, where $f(t)$ is p.d.f and $S(t)$ is the survival function. Prove $H(t) = - log(S(t))$.
+
+
+\item Suppose that a random variable $T$ has exponential distribution with a p.d.f $f(t) = \lambda e^{-\lambda t}$, where $t \ge 0$. (1) find mean $E(T)$ and variance $Var(T)$ of this random variable, assuming $\lambda$ is a known constant; (2) derive the equation of $F(t)$, $S(t)$, $h(t)$ and $H(t)$ respectively, based on $f(t)$.
+
+
+
+
+\end{enumerate}
+
+
+
+\end{document}
+
+
+
+
+
