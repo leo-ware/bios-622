@@ -1,0 +1,120 @@
+\documentstyle[epsfig,amsmath,11pt]{article}
+%\usepackage{amssymb,psfig,epsfig}
+\bibliographystyle{plain}
+\setlength{\oddsidemargin}{0.01in}
+\setlength{\textwidth}{6.2in}
+\setlength{\topmargin}{-0.51in}
+\setlength{\textheight}{8.5in}
+
+\begin{document}
+\def\bebf{\mbox{\boldmath $\beta$}}
+\def\mubf{\mbox{\boldmath $\mu$}}
+\def\epbf{\mbox{\scriptsize\boldmath $\epsilon$}}
+\def\mus{\mbox{\scriptsize\boldmath $\mu$}}
+
+
+\title{BIOS 622 Homework 7}
+\vspace{0.1in}
+\author{Instructor: Sijin Wen\\ }
+\date{\today}
+\maketitle
+
+\baselineskip=12pt
+%\parskip 12pt
+
+\begin{enumerate}
+
+
+
+\item The following table gives a small data set of survival times and a covariate $z$:
+
+\begin{center}
+
+\begin{tabular}{|c|c|c|c|}
+ \hline
+\hline
+patient ID & survival time in years & $\delta$ &z
+\\
+\hline
+1	& 7 & 1 & 4\\
+\hline
+2	&8 &  1&3\\
+\hline
+3	&9 & 0 & 5\\
+\hline
+4	&10 & 1& 6\\
+\hline
+\hline
+
+\end{tabular}
+\end{center}
+
+where $\delta = 0$ means a right censored observation. Assuming a Cox proportional hazards model:
+$$
+\lambda(t|z) = \lambda_0(t) e^{\beta z}
+$$
+
+where $\lambda_0(t)$ is baseline hazard function (sometimes, we write it as $h_0(t)$ below in Hint, for example):
+
+
+\begin{enumerate}
+\item Write down the partial likelihood of $\beta$.
+\item In R, plot the log partial likelihood of $\beta$ in [-8, 3], and convince yourself that this function is concave.
+\item In R, find $\hat{\beta}$ that maximize this log partial likelihood function, calculate the second derivative of
+the log partial likelihood function at $\hat{\beta}$.
+\item (Optional if you have SAS) Use Phreg in SAS (sample code from `Cox model rationale' in Week 10 folder) to fit the above proportional hazards model to the data. How do your results compare to those from the SAS output?
+\item Redo (d) using coxph in R. What is the estimated hazard ratio (i.e., $exp(\hat{\beta}))$ and its 95\%CI?
+\item Redo (e) using R code assuming a Weibull model (it is also a proportional hazards model). What is the estimated hazard ratio (i.e., $exp(\hat{\beta}))$ and its 95\%CI? 
+\item What is your interpretation about the hazard ratio $exp(\hat{\beta})$? Is the covariate $z$ a continuous variable or a categorical variable?
+
+\end{enumerate}
+
+
+
+\end{enumerate}
+
+\parskip 12pt
+
+
+Hint: here is the example we will discuss in the lecture (on next page):
+
+\begin{center}
+
+\begin{tabular}{|c|c|c|c|}
+ \hline
+\hline
+patient ID & survival time & $\delta$ & z
+\\
+\hline
+1	& 2&1 & 2\\
+\hline
+2	&2&0 & 2\\
+\hline
+3	&5&1 & 1\\
+\hline
+4	& 7&1 & 3\\
+\hline
+\hline
+
+\end{tabular}
+\end{center}
+
+The partial likelihood is
+$$
+\begin{aligned}
+PL(\beta) &= \frac{h_0(2)e^{2\beta}}{h_0(2)e^{2\beta}+h_0(2)e^{2\beta}+h_0(2)e^{\beta} + h_0(2)e^{3\beta}} 
+\times  \frac{h_0(5)e^{\beta}}{h_0(5)e^{\beta} +h_0(5)e^{3\beta} } \times \frac{h_0(7)e^{3\beta}}{h_0(7)e^{3\beta}}\\
+&=\frac{e^{2\beta}}{e^{2\beta}+e^{2\beta}+e^{\beta} + e^{3\beta}} 
+\times  \frac{e^{\beta}}{e^{\beta} +e^{3\beta} } \times \frac{e^{3\beta}}{e^{3\beta}}
+\end{aligned}
+$$
+The key question is `what is $\beta$ to maximize the above function'? Notice that the survival time is not shown in the $PL$ in the final calculation since $h_0(t)e^{\beta z}$ is in the $PL$ but $h_0(t)$ has been canceled out in each components, which implies that we don't need to specify the survival distribution in the Cox model.
+
+
+
+\end{document}
+
+
+
+
+
