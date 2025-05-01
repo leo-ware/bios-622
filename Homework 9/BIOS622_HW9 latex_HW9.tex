@@ -1,0 +1,107 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx, verbatim}
+\usepackage[fleqn]{amsmath}
+\setlength{\textwidth}{6.5in} 
+\setlength{\textheight}{9in}
+\setlength{\oddsidemargin}{0in} 
+\setlength{\evensidemargin}{0in}
+\setlength{\topmargin}{-1.8cm}
+
+%\usepackage{Sweave}
+\begin{document}
+%\input{HW9-concordance}
+\def\bebf{\mbox{\boldmath $\beta$}}
+\def\mubf{\mbox{\boldmath $\mu$}}
+\def\epbf{\mbox{\scriptsize\boldmath $\epsilon$}}
+\def\mus{\mbox{\scriptsize\boldmath $\mu$}}
+
+
+\title{BIOS 622 Homework 9 }
+%\vspace{0.2in}
+\author{Instructor: Sijin Wen}
+\maketitle
+
+\baselineskip=13pt
+%\parskip 12pt
+
+
+\begin{enumerate}
+
+
+\item The following table gives a small data set of survival times and a covariate $z$:
+
+\begin{center}
+
+\begin{tabular}{|c|c|c|}
+ \hline
+\hline
+Patient ID (Gender) & Survival time in years & z
+\\
+\hline
+1 (M)	& 4 & 2\\
+\hline
+2 (M)	&4+ & 2\\
+\hline
+3 (M)	&5& 1\\
+\hline
+4 (M)	& 6 & 3\\
+\hline
+5 (F)	& 7 & 4\\
+\hline
+6 (F)	&8 & 3\\
+\hline
+7 (F)	&9+ & 5\\
+\hline
+\hline
+
+\end{tabular}
+\end{center}
+
+where $+$ means a right censored observation. Assuming a Cox proportional hazards model:
+$$
+\lambda(t|z) = \lambda_0(t) e^{\beta z},
+$$
+do the following:
+\begin{enumerate}
+
+\item \textbf{Stratified $\lambda_0(t)$ by gender} (which is unique for Cox model only), write down the partial likelihood function for $\beta$, and find its MLE, standard error and p-value. 
+\item Redo (a), using coxph in R (or using SAS) to double-check your result in (a).
+\end{enumerate}
+
+
+
+\item Using the Male Laryngeal Cancer data set (larynx.csv, in Week 14 folder), fit Cox proportional hazard models and perform regression diagnostics. If there is an issue/problem from the diagnostics assessment, consider an alternative functional form for this continuous variable or consider stratification for this categorical variable (factor).
+
+This data frame contains the following columns: 
+\begin{itemize}
+\item stage: Stage of disease (1=stage 1, 2=stage2, 3=stage 3, 4=stage 4) 
+\item time: Time to death or on-study time, months 
+\item age: Age at diagnosis of larynx cancer 
+\item diagyr: Year of diagnosis of larynx cancer 
+\item delta: Death indicator (0=alive, 1=dead) 
+\end{itemize}
+
+
+\begin{enumerate}
+
+\item What is the median follow-up of this study?
+\item A Cox model with the factor stage was considered (treat stage as a factor, not a continuous variable). Determine if adding age into the model is appropriate using a martingale residual plot. If age should not enter the model as linear term, suggest a functional form for age.  
+\item Repeat part (b) for the covariate year of diagnosis of larynx cancer. 
+\item Fit a Cox model with the factor stage of disease and a linear term for age. Perform a general examine of this model using Cox-Snell residual (Bonus question below)
+\item Fit a Cox model with a dichotomized stage of disease (high if stage = 3 or 4, low if stage = 1 or 2) and a linear term for age. Use cox.zph (R code) to examine the proportional hazard assumption for the dichotomized stage. If the proportional hazard assumption is violated, refit the model with stratification on the dichotomized stage. 
+
+\end{enumerate}
+
+
+\item (Bonus) Theory of Cox-Snell residual: Let $S \sim U(0, 1)$. Show that $-log(S) \sim Exp(1)$. Notice that $H(t) = -log(S(t))$, the implication of this result is that, if the Cox model is correct (i.e., fit the data well), the estimated cumulative hazard $\hat{H}(t_i)$ should be from a unit exponential. We call $\hat{H}(t_i)$ as the generalized residual or Cox-Snell residual.
+(Bonus: can you show that any survival function $S(t) \sim U(0, 1)$?)
+
+\end{enumerate}
+
+
+\end{document}
+
+
+
+
+

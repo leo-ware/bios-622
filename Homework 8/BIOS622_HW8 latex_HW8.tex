@@ -1,0 +1,93 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx, verbatim}
+\usepackage[fleqn]{amsmath}
+\setlength{\textwidth}{6.5in} 
+\setlength{\textheight}{9in}
+\setlength{\oddsidemargin}{0in} 
+\setlength{\evensidemargin}{0in}
+\setlength{\topmargin}{-1.8cm}
+
+%\usepackage{Sweave}
+\begin{document}
+%\input{HW8-concordance}
+\def\bebf{\mbox{\boldmath $\beta$}}
+\def\mubf{\mbox{\boldmath $\mu$}}
+\def\epbf{\mbox{\scriptsize\boldmath $\epsilon$}}
+\def\mus{\mbox{\scriptsize\boldmath $\mu$}}
+
+
+\title{BIOS 622 Homework 8 }
+%\vspace{0.2in}
+\author{Instructor: Sijin Wen}
+\maketitle
+
+\baselineskip=13pt
+%\parskip 12pt
+
+
+\begin{enumerate}
+
+\item The following table (the same as in homework 7) gives a small data set of survival times and a covariate $z$:
+
+\begin{center}
+
+\begin{tabular}{|c|c|c|}
+ \hline
+\hline
+patient ID & survival time in years & z
+\\
+\hline
+1	& 7 & 4\\
+\hline
+2	&8 & 3\\
+\hline
+3	&9+ & 5\\
+\hline
+4	&10 & 6\\
+\hline
+\hline
+
+\end{tabular}
+\end{center}
+
+where $+$ means a right censored observation. Assuming a Cox proportional hazards model:
+$$
+\lambda(t|z) = \lambda_0(t) e^{\beta z}
+$$
+\begin{enumerate}
+\item Estimate $H_0(t)$ ($t$ = 7, 8, 10) after Cox model fit by (page 204 in the course notes):
+$$
+\hat{H}_0(t) = \sum_{i: \tau_i \le t} ~~ \frac{D_i}{\sum_{j \in R_i } exp(\hat{\beta}z_j)}
+$$
+where $D_i$ is the number that failed at that time and $R_i$ is the set of individuals at risk.
+
+\item Redo (a) based on Nelson-Aalen estimator (page 94).
+
+\end{enumerate}
+
+\item Using the WHAS data with 500 subjects (in Week 12 folder), fit Cox proportional hazard models in R. Notice that the survival time and censoring indicator are listed in the last two columns (a readme file in the same folder at the sole site). 
+\begin{enumerate}
+
+\item What is the median follow-up of this study?
+\item Plot Kaplan-Meier survival functions (in R) by gender. What is median survival with 95\%CI of each group? What is 1-year (365 days) survival with 95\%CI of each group?  
+\item Fit a proportional hazard model with gender as a covariate (in R), using (1) exact, (2) Breslow, and (3) Efron for ties, respectively. Please report p-values and state null and alternative hypotheses. Is there big difference on p-vlaues in comparison to the log-rank test? 
+
+\item Redo (c) in SAS (optional).
+
+\item Fit a proportional hazard model containing gender, age and the gender-age interaction. Appropriate interpret the model, including the regression parameter $\beta$ for gender, age and the interaction term, respectively. What is the hazard ratio between male and female from this model? What is your interpretation on the hazard ratio from this model?
+
+\item Plot the predicted survival functions for the following subgroups: (1) male at age 60, (2) male at age 80, (3) female at age 60, and (4) female at age 80. What is median survival and 95\%CI in each subgroup?
+
+\end{enumerate}
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
